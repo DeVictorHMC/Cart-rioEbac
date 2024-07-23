@@ -18,7 +18,7 @@ void registro() {
     FILE *file;
     file = fopen(arquivo, "w");
     fprintf(file, "\nCPF: ");
-    fprintf(file, cpf);
+    fprintf(file, "%s", cpf);
     fclose(file);
     
     file = fopen(arquivo, "a");
@@ -29,7 +29,7 @@ void registro() {
     scanf("%s", nome);
     
     file = fopen(arquivo, "a");
-    fprintf(file, nome);
+    fprintf(file, "%s", nome);
     fclose(file);
     
     file = fopen(arquivo, "a");
@@ -40,7 +40,7 @@ void registro() {
     scanf("%s", sobrenome);
     
     file = fopen(arquivo, "a");
-    fprintf(file, sobrenome);
+    fprintf(file, "%s", sobrenome);
     fclose(file);
     
     file = fopen(arquivo, "a");
@@ -51,7 +51,7 @@ void registro() {
     scanf("%s", cargo);
     
     file = fopen(arquivo, "a");
-    fprintf(file, cargo);
+    fprintf(file, "%s", cargo);
     fprintf(file, ",\n\n");
     fclose(file);
     
@@ -72,9 +72,9 @@ void consulta() {
     file = fopen(cpf, "r");
     
     if (file == NULL) {
-        printf("N√£o foi poss√≠vel abrir o arquivo, n√£o localizado.\n");
+        printf("N„o foi possÌvel abrir o arquivo, n„o localizado.\n");
     } else {
-        printf("Essas s√£o as informa√ß√µes do usu√°rio: \n");
+        printf("Essas s„o as informaÁıes do usu·rio: \n");
     }
     
     while (fgets(conteudo, 200, file) != NULL) {
@@ -91,7 +91,7 @@ void deletar() {
     
     char cpf[40];
     
-    printf("Digite o CPF do usu√°rio a ser deletado: ");
+    printf("Digite o CPF do usu·rio a ser deletado: ");
     scanf("%s", cpf);
     
     remove(cpf);
@@ -100,7 +100,7 @@ void deletar() {
     file = fopen(cpf, "r");
     
     if (file == NULL) {
-        printf("O usu√°rio n√£o se encontra no sistema!.\n");
+        printf("O usu·rio n„o se encontra no sistema!\n");
         system("pause");
     } else {
         fclose(file);
@@ -116,12 +116,13 @@ int main() {
         
         setlocale(LC_ALL, "Portuguese");
 
-        printf("### Cart√≥rio da Ebac ###\n\n");
-        printf("Escolha a op√ß√£o desejada do menu:\n\n");
+        printf("### CartÛrio da Ebac ###\n\n");
+        printf("Escolha a opÁ„o desejada do menu:\n\n");
         printf("\t1 - Registrar nomes\n");
         printf("\t2 - Consultar os nomes\n");
         printf("\t3 - Deletar os nomes\n\n");
-        printf("Op√ß√£o:");
+        printf("\t4 - Sair do sistema\n\n");
+        printf("OpÁ„o:");
         
         scanf("%d", &opcao);
         
@@ -139,11 +140,16 @@ int main() {
             case 3:
                 deletar();
                 break;
+                
+            case 4:
+                printf("Obrigado por utilizar o sistema!\n");
+                return 0;
             
             default:
-                printf("Essa op√ß√£o n√£o est√° dispon√≠vel!\n");
+                printf("Essa opÁ„o n„o est· disponÌvel!\n");
                 system("pause");
                 break;
         }
     }
 }
+
